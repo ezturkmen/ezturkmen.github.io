@@ -1,370 +1,430 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esra Zeynep Türkmen | Portfolyo</title>
-    <link href="https://github.com/ezturkmen/ezturkmen.github.io/blob/main/profil.jpeg>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#f8fafc',
+                            card: 'rgba(255, 255, 255, 0.8)',
+                            primary: '#fb7185', // Rose 400 (Açık Kırmızı/Pembe)
+                            secondary: '#f472b6', // Pink 400
+                            accent: '#0891b2' // Cyan 600 (Vurgu için korundu)
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
         body {
-            background-color: #050814;
-            color: #ffffff;
+            background-color: #f8fafc;
+            color: #0f172a;
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Arka Plan Animasyonu */
-        .background-glow {
+        /* İnteraktif Parçacık Arka Planı - Pembe Tonları */
+        #particle-canvas {
             position: fixed;
-            top: -20%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: pulseGlow 8s infinite alternate;
-        }
-
-        .background-glow-2 {
-            position: fixed;
-            bottom: -20%;
-            right: -10%;
-            width: 60vw;
-            height: 60vw;
-            background: radial-gradient(circle, rgba(147,51,234,0.15) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: pulseGlow 6s infinite alternate-reverse;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.2); opacity: 1; }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Bölümü ve Profil Fotoğrafı */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            animation: fadeInDown 1.5s ease-out;
-        }
-
-        .profile-wrapper {
-            position: relative;
-            width: 220px;
-            height: 220px;
-            margin: 0 auto 40px auto;
-        }
-
-        /* Dönen Neon Çerçeve Efekti */
-        .profile-ring {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, #3b82f6, #c084fc, #3b82f6, #9333ea);
-            background-size: 300% 300%;
-            border-radius: 50%;
-            z-index: 1;
-            animation: spinRing 4s linear infinite, glowPulse 2s ease-in-out infinite alternate;
-        }
-
-        .profile-img {
-            position: relative;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            z-index: 2;
-            border: 5px solid #050814;
+            z-index: -2;
+            pointer-events: none;
         }
 
-        @keyframes spinRing {
-            0% { background-position: 0% 50%; transform: rotate(0deg); }
-            100% { background-position: 100% 50%; transform: rotate(360deg); }
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(251, 113, 133, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(251, 113, 133, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black, transparent 95%);
         }
 
-        @keyframes glowPulse {
-            0% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4)); }
-            100% { filter: drop-shadow(0 0 30px rgba(192, 132, 252, 0.8)); }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(15, 23, 42, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #60a5fa, #c084fc);
+        .glass-hover:hover {
+            border-color: rgba(251, 113, 133, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(251, 113, 133, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fb7185 0%, #f472b6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 1.1rem;
-            color: #94a3b8;
-            max-width: 650px;
-            margin: 0 auto 30px auto;
-            line-height: 1.8;
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(251, 113, 133, 0.2);
         }
 
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(90deg, #3b82f6, #9333ea);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 15px 25px rgba(147, 51, 234, 0.5);
-        }
-
-        /* Hareketli Kart Tasarımları */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-            padding: 50px 0;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 35px;
-            border-radius: 25px;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Kartlara "Afilli" Hover Animasyonu */
-        .card:hover {
-            transform: translateY(-20px) scale(1.03);
-            border-color: rgba(59, 130, 246, 0.6);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
-        }
-
-        .card h3 {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            color: #f8fafc;
-        }
-
-        .card p {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 6px 15px;
-            background: rgba(59, 130, 246, 0.15);
-            color: #93c5fd;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .icon-box {
-            font-size: 3rem;
-            margin-bottom: 25px;
-            color: #60a5fa;
-            transition: transform 0.4s ease;
-        }
-
-        .card:hover .icon-box {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-top: 120px;
-            margin-bottom: 30px;
-            color: #ffffff;
-            font-weight: 700;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            margin-top: 120px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #64748b;
-        }
-
-        footer a {
-            color: #60a5fa;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.8rem;
-            transition: color 0.3s, transform 0.3s;
-            display: inline-block;
-        }
-        
-        footer a:hover {
-            color: #c084fc;
-            transform: translateY(-5px) scale(1.1);
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #fb7185; }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <div class="background-glow"></div>
-    <div class="background-glow-2"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="bg-grid"></div>
 
-    <div class="container">
-        
-        <!-- Hero (Giriş) Bölümü -->
-        <section class="hero">
-            <div>
-                <!-- Profil Fotoğrafı Alanı -->
-                <div class="profile-wrapper">
-                    <div class="profile-ring"></div>
-                    <!-- Eğer 'profil.jpg' bulunamazsa otomatik isminin baş harfleriyle bir görsel oluşturur -->
-                    <img src="profil.jpg" alt="Esra Zeynep Türkmen" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Esra+Zeynep&background=0D8ABC&color=fff&size=220'">
-                </div>
-
-                <p style="color: #60a5fa; font-weight: 600; letter-spacing: 2px; margin-bottom: 10px;">YÜKSEK MATEMATİKÇİ | FİNANSAL OPERASYONLAR | YAPAY ZEKA & VERİ BİLİMİ UZMANI ADAYI</p>
-                <h1>Esra Zeynep Türkmen</h1>
-                <p>Matematiğin sunduğu analitik derinliği finans sektöründeki operasyonel süreçlerle harmanlıyorum. Veriyi sadece sayılardan ibaret görmeyip, yapay zeka ve modern analiz araçlarıyla anlamlı stratejilere dönüştürüyorum.</p>
-                <a href="#projeler" class="btn">Projeleri İncele</a>
+    <!-- Modal -->
+    <div id="aboutModal" class="fixed inset-0 z-[100] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-md hidden opacity-0 transition-all duration-300">
+        <div class="glass max-w-2xl w-full p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden shadow-2xl">
+            <button onclick="toggleModal()" class="absolute top-6 right-6 text-slate-500 hover:text-slate-900 transition"><i data-lucide="x"></i></button>
+            <h3 class="text-3xl font-bold gradient-text mb-6">Esra Zeynep kimdir?</h3>
+            <p class="text-lg text-slate-700 font-light leading-relaxed mb-6 italic">
+                "Merhaba! Ben Esra Zeynep. Yüksek matematikçiyim ve aynı zamanda finans & veri analizi alanlarıyla ilgileniyorum. Hayatımdaki amaç sanıyorum ki gelişmek ve geliştirmek :) Yeni şeyler keşfetmeyi çok seviyorum!"
+            </p>
+            <div class="p-6 bg-rose-50 rounded-2xl border border-rose-100">
+                <h4 class="text-slate-900 font-semibold flex items-center gap-3 mb-2"><i data-lucide="heart" class="text-rose-500 w-4 h-4"></i> Hobilerim</h4>
+                <p class="text-slate-600 text-sm">Trekking yapmak, mutfakta yeni yemek tarifleri denemek ve kişisel gelişim kitapları okumak en büyük keyiflerim arasında yer alıyor.</p>
             </div>
-        </section>
-
-        <!-- Uzmanlık & Deneyim Bölümü -->
-        <h2 class="section-title">Uzmanlık & Deneyim</h2>
-        <div class="grid">
-            <div class="card animate-on-scroll">
-                <div class="icon-box"><i class="fas fa-chart-line"></i></div>
-                <span class="tag">Finansman</span>
-                <h3>Finansal Raporlama</h3>
-                <p>Finansal operasyonlar, IBKB, bankacılık hacim raporlamaları, SAP FI geliştirmeleri gibi süreçlerde aktif rol aldım.</p>
-            </div>
-
-            <div class="card animate-on-scroll">
-                <div class="icon-box" style="color: #c084fc;"><i class="fas fa-database"></i></div>
-                <span class="tag" style="background: rgba(192,132,252,0.15); color: #c084fc;">Teknoloji & Yazılım</span>
-                <h3>SAP FI & Python & SQL </h3>
-                <p>SAP ABAP geliştirme süreçleri (finans alanında), SQL ve Python ile verilerin analiz edilip finansal operasyonların dijitalleştirilmesi.</p>
-            </div>
-
-            <div class="card animate-on-scroll">
-                <div class="icon-box" style="color: #34d399;"><i class="fas fa-chalkboard-teacher"></i></div>
-                <span class="tag" style="background: rgba(52,211,153,0.15); color: #34d399;">Eğitmenlik</span>
-                <h3>Excel Expert & Eğitim</h3>
-                <p>Nilüfer Gençlik Programı kapsamında üniversite öğrencilerine yönelik başlangıç ve orta düzey Excel müfredatı tasarımı ve eğitmenliği. Birebir excel özel ders eğitimi.</p>
-            </div>
+            <button onclick="toggleModal()" class="w-full mt-8 py-4 bg-rose-500 text-white rounded-2xl font-bold hover:bg-rose-600 transition shadow-lg">Kapat</button>
         </div>
-
-        <!-- Gönüllülük ve Sosyal Sorumluluk Bölümü -->
-        <h2 class="section-title">Gönüllülük & Sosyal Sorumluluk</h2>
-        <div class="grid">
-            <div class="card animate-on-scroll">
-                <div class="icon-box" style="color: #ef4444;"><i class="fas fa-hands-helping"></i></div>
-                <span class="tag" style="background: rgba(239,68,68,0.15); color: #ef4444;">AFAD</span>
-                <h3>Gönüllülük Çalışması</h3>
-                <p>Deprem sonrası ilk aşamalarda gıda paketleme deposunda aktif görev aldım. Ardından AFAD Sosyal Yardımlaşma ve Satın Alma birimlerinde veri girişi ve form düzenleme süreçlerini yürüttüm.</p>
-            </div>
-
-            <div class="card animate-on-scroll">
-                <div class="icon-box" style="color: #0ea5e9;"><i class="fas fa-anchor"></i></div>
-                <span class="tag" style="background: rgba(14,165,233,0.15); color: #0ea5e9;">Borusan Okyanus Gönüllüleri</span>
-                <h3>Meslek Lisesi Koçluğu</h3>
-                <p>Borusan Defne Kampüsü gönüllülük çalışmaları kapsamında, "Meslek Lisesi Koçluk Programı"nda gönüllü koç olarak yer alarak öğrencilere iş hayatıyla ilgili eğitimler verdim.</p>
-            </div>
-        </div>
-
-        <!-- Projeler Bölümü -->
-        <h2 class="section-title" id="projeler">Dijital Projeler</h2>
-        <div class="grid">
-            <div class="card animate-on-scroll">
-                <div class="icon-box" style="color: #f472b6;"><i class="fas fa-utensils"></i></div>
-                <span class="tag" style="background: rgba(244,114,182,0.15); color: #f472b6;">Vercel App</span>
-                <h3>Lezzet Bulucu 2.1</h3>
-                <p>Kullanıcıların elindeki malzemelere göre, yemek tarifleri bulabildiği yapay zeka destekli asistan.</p>
-            </div>
-
-            <div class="card animate-on-scroll">
-                <div class="icon-box" style="color: #10b981;"><i class="fas fa-file-invoice-dollar"></i></div>
-                <span class="tag" style="background: rgba(16,185,129,0.15); color: #10b981;">Geliştiriliyor</span>
-                <h3>Finansal Rapor Okuyucu</h3>
-                <p>Karmaşık finansal tabloları analiz edip hızlı içgörüler sunan akıllı raporlama ve bütçe aracı.</p>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <footer>
-            <p style="margin-bottom: 25px; font-style: italic; font-size: 1.1rem;">"Analitik düşünceyle veriyi, tutkuyla geleceği şekillendiriyorum."</p>
-            <div>
-                <a href="mailto:ezturkmen99@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.linkedin.com/in/ezturkmen" target="_blank"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <p style="margin-top: 30px; font-size: 0.85rem; letter-spacing: 1px;">© 2026 Esra Zeynep Türkmen | Bursa</p>
-        </footer>
-
     </div>
 
-    <!-- Scroll Animasyonları -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.15 });
+    <!-- Navigasyon -->
+    <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="text-xl font-bold font-mono gradient-text tracking-tighter cursor-pointer" onclick="window.scrollTo(0,0)">&lt;EZT /&gt;</div>
+            <div class="hidden md:flex space-x-8 text-xs font-semibold text-slate-500 uppercase tracking-widest">
+                <a href="#home" class="hover:text-rose-500 transition">Giriş</a>
+                <button onclick="toggleModal()" class="hover:text-rose-500 transition">HAKKIMDA</button>
+                <a href="#about" class="hover:text-rose-500 transition">Deneyim</a>
+                <a href="#projects" class="hover:text-rose-500 transition">Projeler</a>
+                <a href="#volunteering" class="hover:text-rose-500 transition">EĞİTİM</a>
+                <a href="#publications" class="hover:text-rose-500 transition">Yayınlar</a>
+                <a href="#contact" class="hover:text-rose-500 transition underline underline-offset-8">İletişim</a>
+            </div>
+            <button class="md:hidden text-slate-600">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
 
-            document.querySelectorAll('.animate-on-scroll').forEach((el) => {
-                observer.observe(el);
-            });
-        });
+    <!-- Hero Section -->
+    <header id="home" class="min-h-screen flex items-center pt-20 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <p class="text-rose-500 font-mono text-[10px] md:text-xs font-bold tracking-[0.15em] mb-6 border-l-2 border-rose-500 pl-4 uppercase">
+                    Yüksek Matematikçi | Finansal Operasyon | Yapay Zeka ve Veri Bilimi Uzmanı Adayı
+                </p>
+                <h1 class="text-5xl md:text-8xl font-bold mb-8 leading-none tracking-tighter text-slate-900">Esra Zeynep <br/> <span class="gradient-text font-mono">Türkmen</span></h1>
+                <p class="text-slate-600 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-lg">
+                    Matematiğin sunduğu analitik derinliği finans sektöründeki operasyonel süreçlerle harmanlıyorum. 
+                    Sayıları stratejiye, veriyi geleceğe dönüştürüyorum.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="toggleModal()" class="px-8 py-4 bg-rose-500 hover:bg-rose-600 text-white rounded-xl font-bold transition-all flex items-center gap-3 shadow-xl shadow-rose-100">
+                        Esra Zeynep kimdir? <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                    <a href="#contact" class="px-8 py-4 bg-white border border-slate-200 rounded-xl font-bold hover:border-rose-400 transition text-slate-700">Bana Ulaşın</a>
+                </div>
+            </div>
+            
+            <div class="relative hidden md:flex justify-center" data-aos="zoom-in" data-aos-delay="200">
+                <div class="w-96 h-96 relative">
+                    <div class="absolute inset-0 bg-rose-500/10 rounded-full blur-3xl"></div>
+                    <div class="relative w-full h-full border border-slate-200 rounded-[3rem] flex items-center justify-center bg-white shadow-xl overflow-hidden">
+                        <img src="profil.jpeg" alt="Esra Zeynep Türkmen" class="w-full h-full object-cover">
+                        <i data-lucide="user" class="absolute w-32 h-32 text-rose-500/10 animate-pulse pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Deneyim -->
+    <section id="about" class="py-32 px-6" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900">
+                <span class="text-rose-500 text-xl font-bold">01.</span> Deneyim & Uzmanlık 
+                <span class="h-[1px] flex-grow bg-slate-200"></span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl glass-hover text-center md:text-left">
+                    <i data-lucide="briefcase" class="text-rose-500 mb-6 w-8 h-8 mx-auto md:mx-0"></i>
+                    <h3 class="text-xl font-bold mb-4 font-mono">Finans Uzman Yardımcısı</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Borçelik bünyesinde finansal raporlama, operasyonel süreçler ve IBKB yönetimi.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl glass-hover text-center md:text-left">
+                    <i data-lucide="line-chart" class="text-pink-500 mb-6 w-8 h-8 mx-auto md:mx-0"></i>
+                    <h3 class="text-xl font-bold mb-4 font-mono">Bütçe & Malî Kontrol</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Satış ve satın alma raporlarının analizi, veri görselleştirme ve raporlama desteği.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl glass-hover text-center md:text-left">
+                    <i data-lucide="graduation-cap" class="text-rose-400 mb-6 w-8 h-8 mx-auto md:mx-0"></i>
+                    <h3 class="text-xl font-bold mb-4 font-mono">Matematik Öğretmenliği</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Eğitim kurumlarında analitik düşünce temelli matematik eğitimi ve özel dersler.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projeler -->
+    <section id="projects" class="py-32 px-6 bg-slate-100/50" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900">
+                <span class="text-rose-500 text-xl font-bold">02.</span> Dijital Projeler 
+                <span class="h-[1px] flex-grow bg-slate-200"></span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <a href="https://yemek-tarifi-app.vercel.app/" target="_blank" class="glass p-10 rounded-[2.5rem] glass-hover group">
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="w-12 h-12 bg-rose-500/10 rounded-xl flex items-center justify-center"><i data-lucide="chef-hat" class="text-rose-500"></i></div>
+                        <i data-lucide="external-link" class="w-5 h-5 text-slate-400 group-hover:text-rose-500 transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-mono uppercase tracking-widest text-slate-900">Lezzet Bulucu 2.1</h3>
+                    <p class="text-slate-600 font-light mb-6">AI destekli tarif asistanı. Malzemelerinize göre akıllı mutfak çözümleri.</p>
+                    <span class="text-[10px] font-bold text-rose-600 px-3 py-1 bg-rose-100 rounded-full">REACT // AI</span>
+                </a>
+                <a href="https://github.com/ezturkmen/kisisel-butce-takip" target="_blank" class="glass p-10 rounded-[2.5rem] glass-hover group">
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center"><i data-lucide="wallet" class="text-pink-500"></i></div>
+                        <i data-lucide="github" class="w-5 h-5 text-slate-400 group-hover:text-slate-900 transition"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-mono uppercase tracking-widest text-slate-900">FinansTakip</h3>
+                    <p class="text-slate-600 font-light mb-6">Yapay zeka desteği ile kişisel bütçe kontrolü uygulaması (Geliştiriliyor).</p>
+                    <span class="text-[10px] font-bold text-pink-600 px-3 py-1 bg-pink-100 rounded-full">PYTHON // DATA</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eğitim & Gönüllülük -->
+    <section id="volunteering" class="py-32 px-6" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-center justify-center text-slate-900 text-uppercase">
+                &Sigma; EĞİTİM & GÖNÜLLÜLÜK
+            </h2>
+            <div class="bg-white p-4 rounded-[3rem] shadow-xl border border-slate-100">
+                <iframe src="https://padlet.com/embed/ar14eymtrkukk9p2" frameborder="0" class="w-full h-[600px] rounded-[2rem]"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yayınlar -->
+    <section id="publications" class="py-32 px-6 bg-slate-100/50" data-aos="fade-up">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900">
+                <span class="text-rose-500 text-xl font-bold">03.</span> Akademik Yayınlar 
+                <span class="h-[1px] flex-grow bg-slate-200"></span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <a href="https://nntdm.net/volume-29-2023/number-4/682-694/" target="_blank" class="glass p-10 rounded-[3rem] glass-hover block group transition-all">
+                    <div class="flex justify-between items-start mb-8 font-mono">
+                        <div class="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center border border-rose-200 group-hover:bg-rose-500 group-hover:text-white transition-all">
+                            <i data-lucide="scroll"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-6 h-6 text-slate-400 group-hover:text-rose-500 transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 group-hover:text-rose-600 transition leading-snug font-mono text-slate-900">Almost balancers, almost cobalancers... and almost Lucas-balancers</h3>
+                    <p class="text-slate-500 text-sm mb-6 font-light italic">Ahmet Tekcan & Esra Zeynep Türkmen</p>
+                    <div class="flex items-center gap-3 text-rose-500 font-bold text-[10px] uppercase tracking-widest font-mono">
+                        Makaleyi Oku <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <a href="https://tez.yok.gov.tr/" target="_blank" class="glass p-10 rounded-[3rem] glass-hover block group transition-all">
+                    <div class="flex justify-between items-start mb-8 font-mono">
+                        <div class="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center border border-pink-200 group-hover:bg-pink-500 group-hover:text-white transition-all">
+                            <i data-lucide="book-open"></i>
+                        </div>
+                        <i data-lucide="link" class="w-6 h-6 text-slate-400 group-hover:text-pink-600 transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 group-hover:text-pink-600 transition leading-snug font-mono text-slate-900">Hemen hemen balansırlar ve kobalansırlar</h3>
+                    <p class="text-slate-500 text-sm mb-2 font-light italic text-slate-600">Yüksek Lisans Tezi // No: 938687</p>
+                    <div class="mt-8 flex items-center gap-3 text-pink-600 font-bold text-[10px] uppercase tracking-widest font-mono">
+                        Tez Merkezi <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim -->
+    <footer id="contact" class="py-32 px-6 border-t border-slate-200" data-aos="fade-up">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-5xl font-black mb-4 gradient-text uppercase tracking-tighter">Bana Ulaşın</h2>
+            <p class="text-slate-500 mb-16 font-mono text-sm tracking-widest uppercase">CONNECT_WITH_ME(ezturkmen)</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="mailto:ezturkmen99@gmail.com" class="group relative flex flex-col items-center p-8 bg-white border border-slate-200 rounded-3xl transition-all duration-300 hover:border-rose-400 hover:shadow-xl btn-glow">
+                    <div class="w-12 h-12 mb-4 bg-rose-50 rounded-xl flex items-center justify-center transition group-hover:scale-110">
+                        <svg class="w-8 h-8 text-rose-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-700 group-hover:text-rose-500 font-mono">Email</span>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/ezturkmen/" target="_blank" class="group relative flex flex-col items-center p-8 bg-white border border-slate-200 rounded-3xl transition-all duration-300 hover:border-blue-500 hover:shadow-xl btn-glow">
+                    <div class="w-12 h-12 mb-4 bg-blue-50 rounded-xl flex items-center justify-center transition group-hover:scale-110">
+                        <svg class="w-8 h-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-700 group-hover:text-blue-600 font-mono">LinkedIn</span>
+                </a>
+
+                <a href="https://github.com/ezturkmen" target="_blank" class="group relative flex flex-col items-center p-8 bg-white border border-slate-200 rounded-3xl transition-all duration-300 hover:border-slate-800 hover:shadow-xl btn-glow">
+                    <div class="w-12 h-12 mb-4 bg-slate-100 rounded-xl flex items-center justify-center transition group-hover:scale-110 border border-slate-200">
+                        <svg class="w-8 h-8 text-slate-900" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-700 group-hover:text-slate-900 font-mono">GitHub</span>
+                </a>
+
+                <a href="https://www.kaggle.com/ezturkmen" target="_blank" class="group relative flex flex-col items-center p-8 bg-white border border-slate-200 rounded-3xl transition-all duration-300 hover:border-blue-400 hover:shadow-xl btn-glow">
+                    <div class="w-12 h-12 mb-4 bg-blue-50 rounded-xl flex items-center justify-center transition group-hover:scale-110">
+                        <svg class="w-8 h-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M18.825 23.859c-.022.028-.118.141-.308.141h-3.473c-.186 0-.279-.059-.353-.131l-4.59-4.624-2.267 2.223v2.339c0 .125-.091.193-.259.193H3.951c-.166 0-.256-.067-.256-.193V.2c0-.125.09-.193.256-.193h3.623c.168 0 .259.068.259.193v12.48l2.037-2.01 4.297-4.46c.144-.14.23-.191.404-.191h3.39c.19 0 .284.112.26.242-.02.102-.067.158-.173.266l-5.7 5.491 5.893 6.138c.101.103.147.161.16.282.01.121-.11.23-.266.24z"/></svg>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-700 group-hover:text-blue-500 font-mono">Kaggle</span>
+                </a>
+            </div>
+            
+            <div class="mt-32 text-slate-400 text-[10px] font-mono tracking-[0.3em] uppercase">
+                &copy; 2026 Esra Zeynep Türkmen // Analitik düşünceyle veriyi, tutkuyla geleceği şekillendiriyorum.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: false });
+        lucide.createIcons();
+
+        // Pembe Kalp Parçacık Sistemi
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            const particleCount = (canvas.width * canvas.height) / 15000;
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 2; 
+                this.speedX = (Math.random() - 0.5) * 0.6;
+                this.speedY = (Math.random() - 0.5) * 0.6;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < mouse.radius) {
+                    const force = (mouse.radius - distance) / mouse.radius;
+                    this.x -= (dx / distance) * force * 2;
+                    this.y -= (dy / distance) * force * 2;
+                }
+            }
+            draw() { drawHeart(ctx, this.x, this.y, this.size); }
+        }
+
+        function drawHeart(context, x, y, size) {
+            context.save();
+            context.beginPath();
+            context.translate(x, y);
+            context.moveTo(0, 0);
+            context.bezierCurveTo(0, -size/2, -size, -size/2, -size, 0);
+            context.bezierCurveTo(-size, size/2, 0, size, 0, size*1.2);
+            context.bezierCurveTo(0, size, size, size/2, size, 0);
+            context.bezierCurveTo(size, -size/2, 0, -size/2, 0, 0);
+            context.fillStyle = 'rgba(251, 113, 133, 0.4)'; // Rose 400 rengi
+            context.fill();
+            context.restore();
+        }
+
+        function connect() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let dx = particles[a].x - particles[b].x;
+                    let dy = particles[a].y - particles[b].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 150) {
+                        ctx.strokeStyle = `rgba(251, 113, 133, ${0.15 * (1 - distance / 150)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            connect();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', init);
+        init(); animate();
+
+        function toggleModal() {
+            const m = document.getElementById('aboutModal');
+            if (m.classList.contains('hidden')) {
+                m.classList.remove('hidden');
+                setTimeout(() => m.classList.add('opacity-100'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                m.classList.remove('opacity-100');
+                setTimeout(() => m.classList.add('hidden'), 300);
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
 </body>
 </html>
