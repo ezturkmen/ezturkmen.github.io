@@ -16,35 +16,42 @@
         }
 
         body {
-            background-color: #fcfaff;
-            color: #334155;
+            background-color: #050814;
+            color: #ffffff;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* Arka Plan Pastel Glow Efektleri */
+        /* Arka Plan Animasyonu */
         .background-glow {
             position: fixed;
-            top: -5%;
-            left: -5%;
-            width: 45vw;
-            height: 45vw;
-            background: radial-gradient(circle, rgba(165, 180, 252, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
             filter: blur(80px);
             z-index: -1;
+            animation: pulseGlow 8s infinite alternate;
         }
 
         .background-glow-2 {
             position: fixed;
-            bottom: -5%;
-            right: -5%;
-            width: 55vw;
-            height: 55vw;
-            background: radial-gradient(circle, rgba(251, 207, 232, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(147,51,234,0.15) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
             filter: blur(80px);
             z-index: -1;
+            animation: pulseGlow 6s infinite alternate-reverse;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 1; }
         }
 
         .container {
@@ -53,31 +60,36 @@
             padding: 0 20px;
         }
 
-        /* Hero Bölümü */
+        /* Hero Bölümü ve Profil Fotoğrafı */
         .hero {
-            min-height: 95vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 40px 20px;
+            animation: fadeInDown 1.5s ease-out;
         }
 
         .profile-wrapper {
             position: relative;
-            width: 210px;
-            height: 210px;
-            margin: 0 auto 35px auto;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 40px auto;
         }
 
+        /* Dönen Neon Çerçeve Efekti */
         .profile-ring {
             position: absolute;
-            top: -10px; left: -10px; right: -10px; bottom: -10px;
-            background: linear-gradient(45deg, #a5b4fc, #fbcfe8, #c084fc, #818cf8);
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #3b82f6, #c084fc, #3b82f6, #9333ea);
             background-size: 300% 300%;
             border-radius: 50%;
             z-index: 1;
-            animation: gradientMove 6s ease infinite;
+            animation: spinRing 4s linear infinite, glowPulse 2s ease-in-out infinite alternate;
         }
 
         .profile-img {
@@ -87,84 +99,71 @@
             object-fit: cover;
             border-radius: 50%;
             z-index: 2;
-            border: 5px solid #ffffff;
+            border: 5px solid #050814;
         }
 
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes spinRing {
+            0% { background-position: 0% 50%; transform: rotate(0deg); }
+            100% { background-position: 100% 50%; transform: rotate(360deg); }
+        }
+
+        @keyframes glowPulse {
+            0% { filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4)); }
+            100% { filter: drop-shadow(0 0 30px rgba(192, 132, 252, 0.8)); }
         }
 
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 15px;
-            background: linear-gradient(90deg, #6366f1, #a855f7);
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #60a5fa, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 700;
         }
 
-        .hero p.tagline {
-            color: #818cf8;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-        }
-
-        .hero p.description {
+        .hero p {
             font-size: 1.1rem;
-            color: #64748b;
-            max-width: 750px;
-            margin: 0 auto 40px auto;
+            color: #94a3b8;
+            max-width: 650px;
+            margin: 0 auto 30px auto;
             line-height: 1.8;
         }
 
         .btn {
             display: inline-block;
             padding: 15px 40px;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
+            background: linear-gradient(90deg, #3b82f6, #9333ea);
             color: white;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 30px;
             font-weight: 600;
             transition: all 0.4s ease;
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(168, 85, 247, 0.3);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(147, 51, 234, 0.5);
         }
 
-        /* Kart ve Link Yapısı */
+        /* Hareketli Kart Tasarımları */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            padding: 20px 0;
-        }
-
-        .card-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: transform 0.4s ease;
+            gap: 35px;
+            padding: 50px 0;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 35px;
-            border-radius: 28px;
-            height: 100%;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            border-radius: 25px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(50px);
         }
 
         .card.visible {
@@ -172,61 +171,85 @@
             transform: translateY(0);
         }
 
-        .card-link:hover .card {
-            transform: translateY(-12px);
-            background: #ffffff;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.05);
-            border-color: #dee2ff;
+        /* Kartlara "Afilli" Hover Animasyonu */
+        .card:hover {
+            transform: translateY(-20px) scale(1.03);
+            border-color: rgba(59, 130, 246, 0.6);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-top: 120px;
-            margin-bottom: 50px;
-            color: #1e293b;
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #f8fafc;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         .tag {
             display: inline-block;
-            padding: 6px 16px;
-            background: #f1f5f9;
-            color: #6366f1;
-            border-radius: 14px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            padding: 6px 15px;
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            border-radius: 20px;
+            font-size: 0.8rem;
             margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         .icon-box {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 25px;
-            color: #a5b4fc;
+            color: #60a5fa;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .icon-box {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-top: 120px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 100px 20px 50px;
-            margin-top: 100px;
-            background: linear-gradient(to top, #f8fafc, transparent);
+            padding: 60px 20px;
+            margin-top: 120px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #64748b;
         }
 
-        .social-links a {
-            color: #94a3b8;
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
             margin: 0 15px;
             font-size: 1.8rem;
-            transition: all 0.3s;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block;
         }
-
-        .social-links a:hover {
-            color: #6366f1;
-            transform: translateY(-5px);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.6rem; }
+        
+        footer a:hover {
+            color: #c084fc;
+            transform: translateY(-5px) scale(1.1);
         }
     </style>
 </head>
@@ -236,79 +259,98 @@
     <div class="background-glow-2"></div>
 
     <div class="container">
+        
+        <!-- Hero (Giriş) Bölümü -->
         <section class="hero">
             <div>
+                <!-- Profil Fotoğrafı Alanı -->
                 <div class="profile-wrapper">
                     <div class="profile-ring"></div>
-                    <img src="profil.jpeg" alt="Esra Zeynep Türkmen" class="profile-img" onerror="this.src='https://via.placeholder.com/210/eef2ff/6366f1?text=EZT'">
+                    <!-- Eğer 'profil.jpg' bulunamazsa otomatik isminin baş harfleriyle bir görsel oluşturur -->
+                    <img src="profil.jpg" alt="Esra Zeynep Türkmen" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Esra+Zeynep&background=0D8ABC&color=fff&size=220'">
                 </div>
-                <p class="tagline">Yüksek Matematikçi | Finansal Operasyon | Yapay Zeka ve Veri Bilimi Uzmanı Adayı</p>
+
+                <p style="color: #60a5fa; font-weight: 600; letter-spacing: 2px; margin-bottom: 10px;">YÜKSEK MATEMATİKÇİ | FİNANSAL OPERASYONLAR | YAPAY ZEKA & VERİ BİLİMİ UZMANI ADAYI</p>
                 <h1>Esra Zeynep Türkmen</h1>
-                <p class="description">
-                    Analitik düşünceyi verinin gücüyle birleştiriyor, finansal operasyonları modern teknoloji araçlarıyla optimize ediyorum.
-                </p>
-                <a href="#projeler" class="btn">Portfolyoyu Keşfet</a>
+                <p>Matematiğin sunduğu analitik derinliği finans sektöründeki operasyonel süreçlerle harmanlıyorum. Veriyi sadece sayılardan ibaret görmeyip, yapay zeka ve modern analiz araçlarıyla anlamlı stratejilere dönüştürüyorum.</p>
+                <a href="#projeler" class="btn">Projeleri İncele</a>
             </div>
         </section>
 
+        <!-- Uzmanlık & Deneyim Bölümü -->
         <h2 class="section-title">Uzmanlık & Deneyim</h2>
         <div class="grid">
             <div class="card animate-on-scroll">
                 <div class="icon-box"><i class="fas fa-chart-line"></i></div>
-                <span class="tag">Operasyon</span>
-                <h3>Finansal Analiz</h3>
-                <p>SAP FI süreçleri, IBKB takibi ve bankacılık operasyonlarında verimlilik odaklı raporlama çalışmaları.</p>
+                <span class="tag">Finansman</span>
+                <h3>Finansal Raporlama</h3>
+                <p>Finansal operasyonlar, IBKB, bankacılık hacim raporlamaları, SAP FI geliştirmeleri gibi süreçlerde aktif rol aldım.</p>
             </div>
 
             <div class="card animate-on-scroll">
-                <div class="icon-box" style="color: #c084fc;"><i class="fas fa-microchip"></i></div>
-                <span class="tag" style="color: #c084fc;">Veri Bilimi</span>
-                <h3>Python & AI</h3>
-                <p>Finansal verilerin Python ve SQL ile işlenmesi, yapay zeka modelleriyle öngörü analizi süreçleri.</p>
+                <div class="icon-box" style="color: #c084fc;"><i class="fas fa-database"></i></div>
+                <span class="tag" style="background: rgba(192,132,252,0.15); color: #c084fc;">Teknoloji & Yazılım</span>
+                <h3>SAP FI & Python & SQL </h3>
+                <p>SAP ABAP geliştirme süreçleri (finans alanında), SQL ve Python ile verilerin analiz edilip finansal operasyonların dijitalleştirilmesi.</p>
             </div>
 
             <div class="card animate-on-scroll">
-                <div class="icon-box" style="color: #f472b6;"><i class="fas fa-chalkboard-teacher"></i></div>
-                <span class="tag" style="color: #f472b6;">Mart 2026</span>
-                <h3>Excel Eğitmenliği</h3>
-                <p><strong>"Genç Kadınların Güçlenmesi"</strong> projesi kapsamında 32 üniversite öğrencisine ileri seviye Excel eğitimi.</p>
+                <div class="icon-box" style="color: #34d399;"><i class="fas fa-chalkboard-teacher"></i></div>
+                <span class="tag" style="background: rgba(52,211,153,0.15); color: #34d399;">Eğitmenlik</span>
+                <h3>Excel Expert & Eğitim</h3>
+                <p>Nilüfer Gençlik Programı kapsamında üniversite öğrencilerine yönelik başlangıç ve orta düzey Excel müfredatı tasarımı ve eğitmenliği. Birebir excel özel ders eğitimi.</p>
             </div>
         </div>
 
+        <!-- Gönüllülük ve Sosyal Sorumluluk Bölümü -->
+        <h2 class="section-title">Gönüllülük & Sosyal Sorumluluk</h2>
+        <div class="grid">
+            <div class="card animate-on-scroll">
+                <div class="icon-box" style="color: #ef4444;"><i class="fas fa-hands-helping"></i></div>
+                <span class="tag" style="background: rgba(239,68,68,0.15); color: #ef4444;">AFAD</span>
+                <h3>Gönüllülük Çalışması</h3>
+                <p>Deprem sonrası ilk aşamalarda gıda paketleme deposunda aktif görev aldım. Ardından AFAD Sosyal Yardımlaşma ve Satın Alma birimlerinde veri girişi ve form düzenleme süreçlerini yürüttüm.</p>
+            </div>
+
+            <div class="card animate-on-scroll">
+                <div class="icon-box" style="color: #0ea5e9;"><i class="fas fa-anchor"></i></div>
+                <span class="tag" style="background: rgba(14,165,233,0.15); color: #0ea5e9;">Borusan Okyanus Gönüllüleri</span>
+                <h3>Meslek Lisesi Koçluğu</h3>
+                <p>Borusan Defne Kampüsü gönüllülük çalışmaları kapsamında, "Meslek Lisesi Koçluk Programı"nda gönüllü koç olarak yer alarak öğrencilere iş hayatıyla ilgili eğitimler verdim.</p>
+            </div>
+        </div>
+
+        <!-- Projeler Bölümü -->
         <h2 class="section-title" id="projeler">Dijital Projeler</h2>
         <div class="grid">
+            <div class="card animate-on-scroll">
+                <div class="icon-box" style="color: #f472b6;"><i class="fas fa-utensils"></i></div>
+                <span class="tag" style="background: rgba(244,114,182,0.15); color: #f472b6;">Vercel App</span>
+                <h3>Lezzet Bulucu 2.1</h3>
+                <p>Kullanıcıların elindeki malzemelere göre, yemek tarifleri bulabildiği yapay zeka destekli asistan.</p>
+            </div>
 
-            <a href="https://yemek-tarifi-app.vercel.app/" target="_blank" class="card-link">
-                <div class="card animate-on-scroll">
-                    <div class="icon-box" style="color: #f472b6;"><i class="fas fa-utensils"></i></div>
-                    <span class="tag" style="background: rgba(244,114,182,0.1); color: #f472b6;">Vercel App</span>
-                    <h3>Lezzet Bulucu 2.1</h3>
-                    <p>Yapay zeka destekli malzeme eşleştirme ve tarif öneri platformu. Projeyi görmek için tıkla.</p>
-                </div>
-            </a>
-
-            <a href="https://github.com/ezturkmen/kisisel-butce-takip" target="_blank" class="card-link">
-                <div class="card animate-on-scroll">
-                    <div class="icon-box" style="color: #10b981;"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <span class="tag" style="background: rgba(16,185,129,0.1); color: #10b981;">Geliştiriliyor</span>
-                    <h3>Finansal Rapor Okuyucu</h3>
-                    <p>Karmaşık tabloları analiz eden akıllı bütçe aracı. Kodları incelemek için tıkla.</p>
-                </div>
-            </a>
-
+            <div class="card animate-on-scroll">
+                <div class="icon-box" style="color: #10b981;"><i class="fas fa-file-invoice-dollar"></i></div>
+                <span class="tag" style="background: rgba(16,185,129,0.15); color: #10b981;">Geliştiriliyor</span>
+                <h3>Finansal Rapor Okuyucu</h3>
+                <p>Karmaşık finansal tabloları analiz edip hızlı içgörüler sunan akıllı raporlama ve bütçe aracı.</p>
+            </div>
         </div>
 
+        <!-- Footer -->
         <footer>
-            <p style="margin-bottom: 25px; font-style: italic; color: #64748b; font-size: 1.1rem;">"Analitik düşünceyle veriyi, tutkuyla geleceği şekillendiriyorum."</p>
-            <div class="social-links">
+            <p style="margin-bottom: 25px; font-style: italic; font-size: 1.1rem;">"Analitik düşünceyle veriyi, tutkuyla geleceği şekillendiriyorum."</p>
+            <div>
                 <a href="mailto:ezturkmen99@gmail.com"><i class="fas fa-envelope"></i></a>
                 <a href="https://www.linkedin.com/in/ezturkmen" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/ezturkmen" target="_blank"><i class="fab fa-github"></i></a>
             </div>
-            <p style="margin-top: 40px; font-size: 0.85rem; color: #94a3b8;">© 2026 Esra Zeynep Türkmen | Bursa</p>
+            <p style="margin-top: 30px; font-size: 0.85rem; letter-spacing: 1px;">© 2026 Esra Zeynep Türkmen | Bursa</p>
         </footer>
+
     </div>
 
+    <!-- Scroll Animasyonları -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
@@ -317,7 +359,7 @@
                         entry.target.classList.add('visible');
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.15 });
 
             document.querySelectorAll('.animate-on-scroll').forEach((el) => {
                 observer.observe(el);
