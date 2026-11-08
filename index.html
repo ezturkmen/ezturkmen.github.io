@@ -88,6 +88,11 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* İngilizce ve Türkçe modlarında dil bazlı büyük harf düzenlemesi için */
+        .lang-title {
+            text-transform: uppercase;
+        }
+
         .btn-glow:hover {
             box-shadow: 0 0 20px rgba(251, 113, 133, 0.2);
         }
@@ -181,15 +186,15 @@
     <!-- Deneyim -->
     <section id="about" class="py-32 px-6" data-aos="fade-up">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900 uppercase tracking-tighter">
-                <span class="text-rose-500 text-xl font-bold">01.</span> <span data-i18n="exp-title">Deneyim & Uzmanlık</span> 
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900 tracking-tighter">
+                <span class="text-rose-500 text-xl font-bold">01.</span> <span data-i18n="exp-title" class="lang-title">Deneyim & Uzmanlık</span> 
                 <span class="h-[1px] flex-grow bg-slate-200"></span>
             </h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="glass p-8 rounded-3xl glass-hover text-center md:text-left">
                     <i data-lucide="building-2" class="text-rose-500 mb-6 w-8 h-8 mx-auto md:mx-0"></i>
-                    <h3 class="text-xl font-bold mb-4 font-mono">Finans Uzmanı</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">Küçükoğlu Holding bünyesinde operasyonel süreçler, finansal raporlama.</p>
+                    <h3 class="text-xl font-bold mb-4 font-mono" data-i18n="exp-card-0-title">Finans Uzmanı</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed" data-i18n="exp-card-0-desc">Küçükoğlu Holding bünyesinde operasyonel süreçler, finansal raporlama.</p>
                 </div>
                 <div class="glass p-8 rounded-3xl glass-hover text-center md:text-left">
                     <i data-lucide="briefcase" class="text-rose-500 mb-6 w-8 h-8 mx-auto md:mx-0"></i>
@@ -213,8 +218,8 @@
     <!-- Projeler -->
     <section id="projects" class="py-32 px-6 bg-slate-100/50" data-aos="fade-up">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900 uppercase tracking-tighter">
-                <span class="text-rose-500 text-xl font-bold">02.</span> <span data-i18n="projects-title">Dijital Projeler</span> 
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900 tracking-tighter">
+                <span class="text-rose-500 text-xl font-bold">02.</span> <span data-i18n="projects-title" class="lang-title">Dijital Projeler</span> 
                 <span class="h-[1px] flex-grow bg-slate-200"></span>
             </h2>
             <div class="grid md:grid-cols-3 gap-8">
@@ -239,6 +244,17 @@
                     <p class="text-slate-600 font-light mb-6 text-sm flex-grow" data-i18n="p2-desc">AI destekli tarif asistanı. Malzemelerinize göre akıllı mutfak çözümleri sunar.</p>
                     <span class="text-[9px] font-bold text-rose-600 px-3 py-1 bg-rose-100 rounded-full self-start">REACT // AI</span>
                 </a>
+
+                <!-- Proje 3: FinansTakip -->
+                <a href="https://github.com/ezturkmen/kisisel-butce-takip" target="_blank" class="glass p-8 rounded-[2.5rem] glass-hover group flex flex-col h-full">
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center"><i data-lucide="wallet" class="text-pink-500"></i></div>
+                        <i data-lucide="github" class="w-5 h-5 text-slate-400 group-hover:text-slate-900 transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 font-mono uppercase tracking-widest text-slate-900" data-i18n="p3-title">FinansTakip</h3>
+                    <p class="text-slate-600 font-light mb-6 text-sm flex-grow" data-i18n="p3-desc">Yapay zeka desteği ile kişisel bütçe kontrolü uygulaması (Geliştiriliyor).</p>
+                    <span class="text-[9px] font-bold text-pink-600 px-3 py-1 bg-pink-100 rounded-full self-start">PYTHON // DATA</span>
+                </a>
             </div>
         </div>
     </section>
@@ -246,7 +262,7 @@
     <!-- Eğitim & Gönüllülük -->
     <section id="volunteering" class="py-32 px-6" data-aos="fade-up">
         <div class="max-w-7xl mx-auto text-center flex flex-col items-center">
-            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-center justify-center text-slate-900 uppercase tracking-tighter" data-i18n="edu-title">
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-center justify-center text-slate-900 tracking-tighter" data-i18n="edu-title">
                 &Sigma; EĞİTİM & GÖNÜLLÜLÜK
             </h2>
             <!-- Padlet Konteynırı -->
@@ -259,8 +275,8 @@
     <!-- Yayınlar -->
     <section id="publications" class="py-32 px-6 bg-slate-100/50" data-aos="fade-up">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900 uppercase tracking-tighter">
-                <span class="text-rose-500 text-xl font-bold">03.</span> <span data-i18n="pub-title">Akademik Yayınlar</span> 
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-slate-900 tracking-tighter">
+                <span class="text-rose-500 text-xl font-bold">03.</span> <span data-i18n="pub-title" class="lang-title">Akademik Yayınlar</span> 
                 <span class="h-[1px] flex-grow bg-slate-200"></span>
             </h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -298,7 +314,7 @@
     <!-- İletişim -->
     <footer id="contact" class="py-32 px-6 border-t border-slate-200" data-aos="fade-up">
         <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-5xl font-black mb-4 gradient-text uppercase tracking-tighter" data-i18n="contact-title">Bana Ulaşın</h2>
+            <h2 class="text-5xl font-black mb-4 gradient-text tracking-tighter" data-i18n="contact-title">Bana Ulaşın</h2>
             <p class="text-slate-500 mb-16 font-mono text-[10px] tracking-widest uppercase">CONNECT_WITH_ME(ezturkmen)</p>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -428,25 +444,27 @@
         // Çeviri Verileri
         const translations = {
             tr: {
-                "nav-home": "Giriş",
+                "nav-home": "GİRİŞ",
                 "nav-about": "HAKKIMDA",
-                "nav-exp": "Deneyim",
-                "nav-projects": "Projeler",
+                "nav-exp": "DENEYİM",
+                "nav-projects": "PROJELER",
                 "nav-edu": "EĞİTİM",
-                "nav-pub": "Yayınlar",
-                "nav-contact": "İletişim",
+                "nav-pub": "YAYINLAR",
+                "nav-contact": "İLETİŞİM",
                 "hero-tagline": "Yüksek Matematikçi | Finansal Operasyon | Yapay Zeka ve Veri Bilimi Uzmanı Adayı",
                 "hero-desc": "Matematiğin sunduğu analitik derinliği finans sektöründeki operasyonel süreçlerle harmanlıyorum. Sayıları stratejiye, veriyi geleceğe dönüştürüyorum.",
                 "hero-btn-about": "Esra Zeynep kimdir?",
                 "hero-btn-contact": "Bana Ulaşın",
-                "exp-title": "Deneyim & Uzmanlık",
+                "exp-title": "DENEYİM & UZMANLIK",
+                "exp-card-0-title": "Finans Uzmanı",
+                "exp-card-0-desc": "Küçükoğlu Holding bünyesinde operasyonel süreçler, finansal raporlama.",
                 "exp-card-1-title": "Finans Uzman Yardımcısı",
                 "exp-card-1-desc": "Borçelik bünyesinde finansal raporlama, operasyonel süreçler ve IBKB yönetimi.",
                 "exp-card-2-title": "Bütçe & Malî Kontrol",
                 "exp-card-2-desc": "Satış ve satın alma raporlarının analizi, veri görselleştirme ve raporlama desteği.",
                 "exp-card-3-title": "Matematik Öğretmenliği",
                 "exp-card-3-desc": "Eğitim kurumlarında analitik düşünce temelli matematik eğitimi ve özel dersler.",
-                "projects-title": "Dijital Projeler",
+                "projects-title": "DİJİTAL PROJELER",
                 "p1-title": "Excel Eğitim Asistanı",
                 "p1-desc": "Excel öğrenimini dijitalleştiren, doğru bilinen yanlışları ayrıntılı çözümlerle düzelten interaktif bir eğitim platformu.",
                 "p2-title": "Lezzet Bulucu 2.1",
@@ -454,7 +472,7 @@
                 "p3-title": "FinansTakip",
                 "p3-desc": "Yapay zeka desteği ile kişisel bütçe kontrolü uygulaması (Geliştiriliyor).",
                 "edu-title": "Σ EĞİTİM & GÖNÜLLÜLÜK",
-                "pub-title": "Akademik Yayınlar",
+                "pub-title": "AKADEMİK YAYINLAR",
                 "pub-read": "Makaleyi Oku",
                 "thesis-title": "Hemen hemen balansırlar ve kobalansırlar",
                 "thesis-subtitle": "Yüksek Lisans Tezi // No: 938687",
@@ -468,18 +486,18 @@
                 "modal-close": "Kapat"
             },
             en: {
-                "nav-home": "Home",
+                "nav-home": "HOME",
                 "nav-about": "ABOUT ME",
-                "nav-exp": "Experıence",
-                "nav-projects": "Projects",
+                "nav-exp": "EXPERIENCE",
+                "nav-projects": "PROJECTS",
                 "nav-edu": "EDUCATION",
-                "nav-pub": "Publıcatıons",
-                "nav-contact": "Contact",
-                "hero-tagline": "Senıor Mathematıcıan | Fınancıal Operatıons | AI & Data Scıence Candıdate",
+                "nav-pub": "PUBLICATIONS",
+                "nav-contact": "CONTACT",
+                "hero-tagline": "Senior Mathematician | Financial Operations | AI & Data Science Candidate",
                 "hero-desc": "I blend the analytical depth of mathematics with operational processes in the finance sector. I transform numbers into strategy and data into the future.",
                 "hero-btn-about": "Who is Esra Zeynep?",
                 "hero-btn-contact": "Contact Me",
-                "exp-title": "Experıence & Expertıse",
+                "exp-title": "EXPERIENCE & EXPERTISE",
                 "exp-card-0-title": "Finance Specialist",
                 "exp-card-0-desc": "Operational processes and financial reporting within Küçükoğlu Holding.",
                 "exp-card-1-title": "Assistant Finance Specialist",
@@ -488,21 +506,21 @@
                 "exp-card-2-desc": "Analysis of sales and purchasing reports, data visualization and reporting support.",
                 "exp-card-3-title": "Mathematics Teacher",
                 "exp-card-3-desc": "Mathematics education based on analytical thinking and private tutoring in educational institutions.",
-                "projects-title": "Dıgıtal Projects",
-                "p1-title": "Excel Traınıng Assıstant",
+                "projects-title": "DIGITAL PROJECTS",
+                "p1-title": "Excel Training Assistant",
                 "p1-desc": "An interactive education platform that digitalizes Excel learning and corrects common misconceptions with detailed solutions.",
-                "p2-title": "Flavor Fınder 2.1",
+                "p2-title": "Flavor Finder 2.1",
                 "p2-desc": "AI-powered recipe assistant. Offers smart kitchen solutions based on your ingredients.",
                 "p3-title": "FinanceTrack",
                 "p3-desc": "Personal budget control application with AI support (Under Development).",
                 "edu-title": "Σ EDUCATION & VOLUNTEERING",
-                "pub-title": "Academıc Publıcatıons",
-                "pub-read": "Read Artıcle",
+                "pub-title": "ACADEMIC PUBLICATIONS",
+                "pub-read": "Read Article",
                 "thesis-title": "Almost balancers, almost cobalancers",
                 "thesis-subtitle": "Master's Thesis // No: 938687",
                 "thesis-btn": "Thesis Center",
-                "contact-title": "Connect Wıth Me",
-                "footer-tagline": "Shapıng data wıth analytıcal thınkıng and the future wıth passıon.",
+                "contact-title": "Connect With Me",
+                "footer-tagline": "Shaping data with analytical thinking and the future with passion.",
                 "modal-title": "Who is Esra Zeynep?",
                 "modal-desc": "Hello! I am Esra Zeynep. I am a mathematician and I am also interested in finance & data analysis. My goal in life is to develop and contribute :) I love discovering new things!",
                 "modal-hobbies-title": "My Hobbies",
@@ -517,6 +535,11 @@
                 if (translations[lang][key]) {
                     el.innerText = translations[lang][key];
                 }
+            });
+
+            // Türkçe / İngilizce karakter duyarlılığı ve büyük harf uyumluluğu
+            document.querySelectorAll('.lang-title').forEach(el => {
+                el.style.textTransform = lang === 'en' ? 'uppercase' : 'uppercase';
             });
 
             if (lang === 'tr') {
