@@ -549,5 +549,54 @@
             }
         }
     </script>
+<style>
+  @media (hover: hover) and (pointer: fine) {
+    html, body, a, button, input, textarea, select, label { cursor: none !important; }
+  }
+  #kedi-imleci {
+    position: fixed;
+    top: 0; left: 0;
+    width: 48px; height: 48px;
+    margin: -24px 0 0 -24px;
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0;
+    transition: opacity .2s ease, width .15s ease, height .15s ease, margin .15s ease;
+    will-change: transform;
+    user-select: none;
+  }
+  #kedi-imleci.tiklanabilir {
+    width: 60px; height: 60px;
+    margin: -30px 0 0 -30px;
+  }
+</style>
+
+<img id="kedi-imleci" src="kedi-imlec.png" alt="" aria-hidden="true" draggable="false">
+
+<script>
+(function () {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  var kedi = document.getElementById('kedi-imleci');
+  var x = -100, y = -100, cx = x, cy = y;
+
+  document.addEventListener('mousemove', function (e) {
+    x = e.clientX;
+    y = e.clientY;
+    kedi.style.opacity = '1';
+    kedi.classList.toggle('tiklanabilir',
+      !!e.target.closest('a, button, input, textarea, select, label'));
+  });
+  document.addEventListener('mouseleave', function () { kedi.style.opacity = '0'; });
+
+  function animate() {
+    cx += (x - cx) * 0.35;
+    cy += (y - cy) * 0.35;
+    kedi.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
 </body>
 </html>
