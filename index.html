@@ -104,7 +104,7 @@
     <div class="bg-grid"></div>
 
     <!-- Modal -->
-    <div id="aboutModal" class="fixed inset-0 z-[100] items-center justify-center p-6 bg-slate-900/40 backdrop-blur-md hidden opacity-0 transition-all duration-300">
+    <div id="aboutModal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-md hidden opacity-0 transition-all duration-300">
         <div class="glass max-w-2xl w-full p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden shadow-2xl">
             <button onclick="toggleModal()" class="absolute top-6 right-6 text-slate-500 hover:text-slate-900 transition"><i data-lucide="x"></i></button>
             <h3 class="text-3xl font-bold gradient-text mb-6" data-i18n="modal-title">Esra Zeynep kimdir?</h3>
@@ -171,7 +171,7 @@
                 <div class="w-96 h-96 relative">
                     <div class="absolute inset-0 bg-rose-500/10 rounded-full blur-3xl"></div>
                     <div class="relative w-full h-full border border-slate-200 rounded-[3rem] flex items-center justify-center bg-white shadow-xl overflow-hidden">
-                        <img src="profil.jpeg" alt="Esra Zeynep Türkmen" class="w-full h-full object-cover">
+                        <img src="profil.jpeg" alt="Esra Zeynep Türkmen" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Esra+Zeynep&background=fff1f2&color=fb7185&size=400'">
                     </div>
                 </div>
             </div>
@@ -185,7 +185,12 @@
                 <span class="text-rose-500 text-xl font-bold">01.</span> <span data-i18n="exp-title">Deneyim & Uzmanlık</span> 
                 <span class="h-[1px] flex-grow bg-slate-200"></span>
             </h2>
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass p-8 rounded-3xl glass-hover text-center md:text-left">
+                    <i data-lucide="building-2" class="text-rose-500 mb-6 w-8 h-8 mx-auto md:mx-0"></i>
+                    <h3 class="text-xl font-bold mb-4 font-mono">Finans Uzmanı</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Küçükoğlu Holding bünyesinde operasyonel süreçler, finansal raporlama.</p>
+                </div>
                 <div class="glass p-8 rounded-3xl glass-hover text-center md:text-left">
                     <i data-lucide="briefcase" class="text-rose-500 mb-6 w-8 h-8 mx-auto md:mx-0"></i>
                     <h3 class="text-xl font-bold mb-4 font-mono" data-i18n="exp-card-1-title">Finans Uzman Yardımcısı</h3>
@@ -231,8 +236,19 @@
                         <i data-lucide="external-link" class="w-5 h-5 text-slate-400 group-hover:text-rose-500 transition"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-4 font-mono uppercase tracking-widest text-slate-900" data-i18n="p2-title">Lezzet Bulucu 2.1</h3>
-                    <p class=stext-slate-600 font-light mb-6 text-sm flex-grow" data-i18n="p2-desc">AI destekli tarif asistanı. Malzemelerinize göre akıllı mutfak çözümleri sunar.</p>
+                    <p class="text-slate-600 font-light mb-6 text-sm flex-grow" data-i18n="p2-desc">AI destekli tarif asistanı. Malzemelerinize göre akıllı mutfak çözümleri sunar.</p>
                     <span class="text-[9px] font-bold text-rose-600 px-3 py-1 bg-rose-100 rounded-full self-start">REACT // AI</span>
+                </a>
+
+                <!-- Proje 3: FinansTakip -->
+                <a href="https://github.com/ezturkmen/kisisel-butce-takip" target="_blank" class="glass p-8 rounded-[2.5rem] glass-hover group flex flex-col h-full">
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center"><i data-lucide="wallet" class="text-pink-500"></i></div>
+                        <i data-lucide="github" class="w-5 h-5 text-slate-400 group-hover:text-slate-900 transition"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 font-mono uppercase tracking-widest text-slate-900" data-i18n="p3-title">FinansTakip</h3>
+                    <p class="text-slate-600 font-light mb-6 text-sm flex-grow" data-i18n="p3-desc">Yapay zeka desteği ile kişisel bütçe kontrolü uygulaması (Geliştiriliyor).</p>
+                    <span class="text-[9px] font-bold text-pink-600 px-3 py-1 bg-pink-100 rounded-full self-start">PYTHON // DATA</span>
                 </a>
             </div>
         </div>
@@ -241,7 +257,7 @@
     <!-- Eğitim & Gönüllülük -->
     <section id="volunteering" class="py-32 px-6" data-aos="fade-up">
         <div class="max-w-7xl mx-auto text-center flex flex-col items-center">
-            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-center justify-center text-slate-900 text-uppercase tracking-tighter" data-i18n="edu-title">
+            <h2 class="text-3xl font-mono mb-16 flex items-center gap-4 text-center justify-center text-slate-900 uppercase tracking-tighter" data-i18n="edu-title">
                 &Sigma; EĞİTİM & GÖNÜLLÜLÜK
             </h2>
             <!-- Padlet Konteynırı -->
@@ -347,6 +363,79 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // AOS Initialize
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Lucide Icons Initialize
+        lucide.createIcons();
+
+        // Modal Toggle
+        function toggleModal() {
+            const modal = document.getElementById('aboutModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            } else {
+                modal.classList.add('opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        }
+
+        // Particle Canvas Animation
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(251, 113, 133, 0.2)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
         // Çeviri Verileri
         const translations = {
             tr: {
@@ -431,144 +520,22 @@
             }
         };
 
-        // Dil Değiştirme Fonksiyonu
         function changeLanguage(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
+                    el.innerText = translations[lang][key];
                 }
             });
 
-            // Aktif Dil Butonu Görünümü
-            document.getElementById('lang-tr').classList.toggle('text-rose-500', lang === 'tr');
-            document.getElementById('lang-tr').classList.toggle('font-bold', lang === 'tr');
-            document.getElementById('lang-en').classList.toggle('text-rose-500', lang === 'en');
-            document.getElementById('lang-en').classList.toggle('font-bold', lang === 'en');
-            
-            // Padlet Link Güncelleme (Yeni İstek)
-            const padletWrapper = document.getElementById('padlet-wrapper');
-            if (lang === 'en') {
-                padletWrapper.innerHTML = `<div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4"><p style="padding:0;margin:0"><iframe src="https://padlet.com/embed/ar14eymtrkukk9p2" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe></p><div style="display:flex;align-items:center;justify-content:end;margin:0;padding:8px 8px 8px 0"><a href="https://padlet.com?ref=embed" style="display:flex;align-items:center;gap:5px;flex-grow:0;margin:0;border:none;padding:0;text-decoration:none" target="_blank"><span aria-hidden style="color:#9E9E9E;font-size:10px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;line-height:1">Made with</span><img src="https://padlet.net/emails/padlet_email_logo_2026_text-dark-200.png" height="12" style="padding:0;margin:0;background:0 0;border:none;box-shadow:none;display:block" alt="Padlet ile yapıldı"></a></div></div>`;
+            if (lang === 'tr') {
+                document.getElementById('lang-tr').className = "transition-colors text-rose-500 font-bold";
+                document.getElementById('lang-en').className = "transition-colors hover:text-rose-500";
             } else {
-                padletWrapper.innerHTML = `<iframe src="https://padlet.com/embed/ar14eymtrkukk9p2" frameborder="0" class="w-full h-[600px] rounded-[2rem]"></iframe>`;
-            }
-
-            // HTML lang niteliğini güncelle
-            document.documentElement.lang = lang;
-            
-            // Seçimi kaydet
-            localStorage.setItem('preferredLang', lang);
-        }
-
-        // Sayfa Yüklendiğinde
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferredLang') || 'tr';
-            changeLanguage(savedLang);
-            AOS.init({ duration: 1000, once: false });
-            lucide.createIcons();
-            initParticles();
-        });
-
-        // Modal Fonksiyonu
-        function toggleModal() {
-            const m = document.getElementById('aboutModal');
-            if (m.classList.contains('hidden')) {
-                m.classList.remove('hidden');
-                setTimeout(() => m.classList.add('opacity-100'), 10);
-                document.body.style.overflow = 'hidden';
-            } else {
-                m.classList.remove('opacity-100');
-                setTimeout(() => m.classList.add('hidden'), 300);
-                document.body.style.overflow = 'auto';
+                document.getElementById('lang-en').className = "transition-colors text-rose-500 font-bold";
+                document.getElementById('lang-tr').className = "transition-colors hover:text-rose-500";
             }
         }
-
-        // Parçacık Sistemi
-        let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
-        const canvas = document.getElementById('particle-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function initParticles() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            particles = [];
-            const particleCount = (canvas.width * canvas.height) / 15000;
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-            animate();
-        }
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 2; 
-                this.speedX = (Math.random() - 0.5) * 0.6;
-                this.speedY = (Math.random() - 0.5) * 0.6;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
-                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
-
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
-                    const force = (mouse.radius - distance) / mouse.radius;
-                    this.x -= (dx / distance) * force * 2;
-                    this.y -= (dy / distance) * force * 2;
-                }
-            }
-            draw() {
-                ctx.save();
-                ctx.beginPath();
-                ctx.translate(this.x, this.y);
-                ctx.moveTo(0, 0);
-                ctx.bezierCurveTo(0, -this.size/2, -this.size, -this.size/2, -this.size, 0);
-                ctx.bezierCurveTo(-this.size, this.size/2, 0, this.size, 0, this.size*1.2);
-                ctx.bezierCurveTo(0, this.size, this.size, this.size/2, this.size, 0);
-                ctx.bezierCurveTo(this.size, -this.size/2, 0, -this.size/2, 0, 0);
-                ctx.fillStyle = 'rgba(251, 113, 133, 0.4)'; 
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            connect();
-            requestAnimationFrame(animate);
-        }
-
-        function connect() {
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a; b < particles.length; b++) {
-                    let dx = particles[a].x - particles[b].x;
-                    let dy = particles[a].y - particles[b].y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 150) {
-                        ctx.strokeStyle = `rgba(251, 113, 133, ${0.15 * (1 - distance / 150)})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
     </script>
 </body>
 </html>
